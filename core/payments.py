@@ -2,7 +2,7 @@ import mercadopago
     
 
 def gerar_link_pagamento(items):
-    sdk = mercadopago.SDK("TEST-3850728559392708-050420-02d7aa28217bd33bd4c9726b98c3e0d5-263804782")
+    sdk = mercadopago.SDK("Insiraopayments")
     items_list = []
 
     # Loop através dos itens da descrição e adiciona-os à lista de itens
