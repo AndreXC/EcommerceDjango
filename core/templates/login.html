@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Animated Login Form</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="container">
+
+        
+		{% csrf_token %}
+        <div class="login-content">
+            <form action="{% url 'login1' %}" method="post">
+				{% csrf_token %}
+                <img src="img/avatar.svg">
+                <h2 class="title"> KR lanches</h2>
+                <div class="input-div one">
+                   <div class="i">
+                        <i class="fas fa-user"></i>
+                   </div>
+                   <div class="div">
+                        <h5>Username</h5>
+                        <input type="text" name="username" class="input">
+                   </div>
+                </div>
+                <div class="input-div pass">
+                   <div class="i"> 
+                        <i class="fas fa-lock"></i>
+                   </div>
+                   <div class="div">
+                        <h5>Password</h5>
+                        <input type="password" name="password" class="input" autocomplete="current-password">
+                   </div>
+                </div>
+                <a href="#">Forgot Password?</a>
+                <input type="submit" class="btn" value="Login">
+                <!-- Mensagem de erro -->
+                {% if error_message %}
+                    <p class="error-message">{{ error_message }}</p>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+
+	<style>
+		/* Estilo para a mensagem de erro */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+
+	</style>
+    <script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+</body>
+</html>

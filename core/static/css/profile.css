@@ -1,0 +1,450 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    color: #444; /* Tom neutro mais escuro */
+}
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.ui-w-80 {
+    width : 80px !important;
+    height: auto;
+}
+
+.btn-default {
+    border-color: rgba(24, 28, 33, 0.1);
+    background  : rgba(0, 0, 0, 0);
+    color       : #4E5155;
+}
+
+label.btn {
+    margin-bottom: 0;
+}
+
+.btn-outline-primary {
+    border-color: #26B4FF;
+    background  : transparent;
+    color       : #26B4FF;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.text-light {
+    color: #babbbc !important;
+}
+
+.btn-facebook {
+    border-color: rgba(0, 0, 0, 0);
+    background  : #3B5998;
+    color       : #fff;
+}
+
+.btn-instagram {
+    border-color: rgba(0, 0, 0, 0);
+    background  : #000;
+    color       : #fff;
+}
+
+.card {
+    background-clip: padding-box;
+    box-shadow     : 0 1px 4px rgba(24, 28, 33, 0.012);
+}
+
+.row-bordered {
+    overflow: hidden;
+}
+
+.account-settings-fileinput {
+    position  : absolute;
+    visibility: hidden;
+    width     : 1px;
+    height    : 1px;
+    opacity   : 0;
+}
+
+.account-settings-links .list-group-item.active {
+    font-weight: bold !important;
+}
+
+html:not(.dark-style) .account-settings-links .list-group-item.active {
+    background: transparent !important;
+}
+
+.account-settings-multiselect~.select2-container {
+    width: 100% !important;
+}
+
+.light-style .account-settings-links .list-group-item {
+    padding     : 0.85rem 1.5rem;
+    border-color: rgba(24, 28, 33, 0.03) !important;
+}
+
+.light-style .account-settings-links .list-group-item.active {
+    color: #4e5155 !important;
+}
+
+.material-style .account-settings-links .list-group-item {
+    padding     : 0.85rem 1.5rem;
+    border-color: rgba(24, 28, 33, 0.03) !important;
+}
+
+.material-style .account-settings-links .list-group-item.active {
+    color: #4e5155 !important;
+}
+
+.dark-style .account-settings-links .list-group-item {
+    padding     : 0.85rem 1.5rem;
+    border-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+.dark-style .account-settings-links .list-group-item.active {
+    color: #fff !important;
+}
+
+.light-style .account-settings-links .list-group-item.active {
+    color: #4E5155 !important;
+}
+
+.light-style .account-settings-links .list-group-item {
+    padding     : 0.85rem 1.5rem;
+    border-color: rgba(24, 28, 33, 0.03) !important;
+}
+
+/* Definições gerais */
+section {
+    width: 100%;
+    padding: 20px;
+    background-color: #fff; /* Branco */
+}
+
+/* Estilo dos detalhes */
+details {
+    border-bottom: 1px solid;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+summary {
+    padding: 15px;
+    color: white;
+    cursor: pointer; /* Tom neutro médio */
+    border-radius: 5px;
+    user-select: none; /* Evita seleção de texto no summary */
+}
+
+/* Estilo da tabela */
+table.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    margin-bottom: 20px;
+}
+
+table.styled-table th,
+table.styled-table td {
+    padding: 15px 10px; /* Maior espaçamento vertical */
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table.styled-table th {
+    background-color: #555; /* Tom neutro médio */
+    color: white;
+}
+
+table.styled-table tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Estilo do texto dentro da tabela */
+.styled-text {
+    padding: 15px;
+    background-color: #f9f9f9; /* Tom neutro mais claro */
+    border-top: 1px solid #ddd;
+    font-size: 16px;
+}
+
+/* Container para a tabela */
+.container_div {
+    max-height: 589px;
+    overflow: auto;
+
+}
+
+.container_div::-webkit-scrollbar{
+    background-color: transparent;
+    width: 2px;
+    border-radius: 10px;
+}
+
+
+/* Estilos Responsivos */
+@media screen and (max-width: 768px) {
+    table.styled-table th,
+    table.styled-table td {
+        padding: 10px; /* Reduz o espaçamento em telas menores */
+    }
+}
+
+
+
+
+.form_search{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    transition: all 1s;
+    width: 50px;
+    height: 50px;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid white;
+    padding: 5px;
+}
+
+.input_search{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;;
+    height: 42.5px;
+    line-height: 30px;
+    outline: 0;
+    border: 1px solid;                   
+    display: none;
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 0 20px;
+}
+
+.fa{
+    box-sizing: border-box;
+    padding: 10px;
+    width: 42.5px;
+    height: 42.5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    color: #07051a;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 1s;
+}
+
+form:hover,
+form:valid{
+    width: 200px;
+    cursor: pointer;
+}
+
+form:hover input,
+form:valid input{
+    display: block;
+}
+
+form:hover .fa,
+form:valid .fa{
+    background: #07051a;
+    color: white;
+}
+
+
+a {
+  display: none;
+  position: absolute;
+  top: 70px;
+  bottom:0;
+  left: 0;
+  right: 0;
+  font-size: 20px;
+  color: white;
+  text-align: center; 
+  width: 100%;
+}
+
+form:valid a {
+  display: block;
+}
+
+/* Estilo do modal */
+.container_pedido {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 800px;
+    min-width: 600px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    z-index: 1000;
+    animation: fade-in-scale 0.5s ease-in-out forwards; /* Adicionando a animação fade-in com escala */
+  }
+/* Estilo dos itens de pedido */
+.item_pedido {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.item_pedido p {
+    margin: 0;
+    font-size: 20px;
+    color: #555;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+    margin-right: 140px;
+}
+
+.item_pedido p:first-child {
+    font-weight: bold;
+    margin-right: 30px;
+    color: #333;
+    flex-basis: 70px;
+}
+
+.item_pedido p:last-child {
+    margin-left: auto;
+    color: #777;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.item_pedido:hover p {
+    color: #222;
+}
+
+.item_pedido:before {
+    content: "";
+    position: absolute;
+    width: calc(100% - 50px);
+    height: 2px;
+    background-color: #ddd;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.item_pedido:hover:before {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.item_pedido:nth-child(even) {
+    background-color: #f5f5f5;
+}
+
+h1 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Estilo do botão fechar */
+.fechar_modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #555;
+    cursor: pointer;
+}
+
+.fechar_modal:hover {
+    color: #222;
+}
+
+/* Estilo do botão para abrir o modal */
+#abrir_modal {
+    margin-top: 40px;
+    font-size: 20px;
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#abrir_modal:hover {
+    background-color: #0056b3;
+}
+/* Definição das animações */
+
+@keyframes fade-in-scale {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+
+  .abrir_modal {
+    border: none;
+    border-bottom: 2px solid transparent; /* Definindo a borda inferior */
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: transparent;
+    color: #333;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.abrir_modal::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #333;
+    transition: width 0.3s ease;
+}
+
+
+
+.abrir_modal:hover::after {
+    width: 100%;
+    left: 0;
+    background-color: #333;
+}
+.imagem-item {
+    width: 50px; /* Defina a largura desejada */
+    height: 50px; /* Defina a altura desejada */
+    object-fit: cover; /* Mantém a proporção da imagem e corta para caber */
+    border-radius: 50%; /* Cria um formato circular para a imagem */
+}

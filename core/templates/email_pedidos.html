@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resumo do seu Pedido</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <style>
+    /* Reset CSS */
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    /* Global Styles */
+    body {
+        font-family: 'Raleway', sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+    }
+    /* Main Title */
+    h2 {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 30px;
+        color: #555;
+    }
+    /* Table Container */
+    .table-container {
+        width: 90%;
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    /* Table Styles */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+    th {
+        background-color: #f2f2f2;
+        color: #555;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+    /* Row Stripes */
+    tbody tr:nth-child(even) {
+        background-color: #f6f6f6;
+    }
+    /* Cell Text Alignment */
+    .quantidade, .total-pedido, .total-geral {
+        text-align: center;
+    }
+    .total-geral {
+        font-weight: bold;
+        color: #3498db;
+    }
+    /* Total Section Styles */
+    .total-section {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+        border-top: 2px solid #ddd;
+    }
+    .total-section span {
+        font-weight: bold;
+    }
+    /* Image Styles */
+    img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    /* User Message */
+    .user-message {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+    .user-message p {
+        margin-bottom: 10px;
+    }
+    .user-message p:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Responsividade */
+    @media only screen and (max-width: 768px) {
+        .table-container {
+            width: 100%;
+            border-radius: 0;
+        }
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    }
+</style>
+
+</head>
+<body>
+  <div class="user-message">
+    <p>Kr Lanches!</p>
+    <p>Olá, é um grande prazer tê-lo(a) aqui, {{ user.nome }}!</p>
+    <p>Seu pedido número <strong>{{ id }}</strong> foi efetivado. Aqui está o resumo:</p>
+    <p>Agradecemos por comprar conosco!</p>
+  </div>
+
+  <h2>Resumo do seu Pedido</h2>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Produto</th>
+          <th>Preço Unitário</th>
+          <th class="quantidade">Quantidade</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ table_pedidos | safe }}
+      </tbody>
+      <tfoot>
+        <tr class="total-section">
+          <td colspan="3"><span>Total:</span></td>
+          <td class="total-geral">R${{ total_geral | floatformat:2 }}</td>
+        </tr>
+      </tfoot>
+  </div>
+
+  
+  <div class="user-message">
+    <p>voce ja consegue visualizar seu pedido!</p>
+  
+  </div>
+</body>
+</html>

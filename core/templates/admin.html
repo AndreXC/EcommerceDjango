@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bxslider/dist/jquery.bxslider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    <script src="{% static 'js/grud.js' %}"></script>
+    <script src="{% static 'js/rowpage.js' %}"></script> 
+
+    <title>Responsive Dashboard Design #2 | AsmrProg</title>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#" class="logo">
+            <img src="../static/img/logokr1.png" width="80" height="80" alt="">
+            <!-- <div class="logo-name"><span>KR</span>Lanches</div> -->
+        </a>
+        <ul class="side-menu">
+            <li class="active"><a id="Buttonsettings" href="#"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+            <li><a id="ButtonUsers" href="#"><i class='bx bx-store-alt'></i>Shop</a></li>
+            <li><a id="ButtonTransacao" href="#"><i class='bx bx-store-alt'></i>Transações</a></li>
+
+        </ul>
+
+        <ul class="side-menu">
+            <li>
+                <a href="#" class="logout">
+                    <i class='bx bx-log-out-circle'></i>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- End of Sidebar -->
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Navbar -->
+        <nav>
+            <i class='bx bx-menu'></i>
+            <form action="#">
+                <div class="form-input">
+                    <input id="searchInput" type="search" placeholder="Search...">
+                    <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+            <input type="checkbox" id="theme-toggle" hidden>
+            <label for="theme-toggle" class="theme-toggle"></label>
+            <a href="#" class="notif">
+                <i class='bx bx-bell'></i>
+                <span class="count">12</span>
+            </a>
+            <a href="#" class="profile">
+                <img src="../static/img/admin.jpg">
+            </a>
+        </nav>
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const searchInput = document.getElementById('searchInput');
+                const tableRows = document.querySelectorAll('tbody tr');
+        
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.trim().toLowerCase();
+        
+                    tableRows.forEach(row => {
+                        const id = row.querySelector('td:nth-child(2)').textContent.trim().toLowerCase();
+                        const name = row.querySelector('td:nth-child(3)').textContent.trim().toLowerCase();
+        
+                        if (id.includes(searchTerm) || name.includes(searchTerm)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        </script>
+
+        <!-- End of Navbar -->
+
+        <main id="maindesh" style="display: block;">,
+
+            <div class="header">
+                <div class="left">
+                    <h1>Dashboard</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="#">
+                                Krlanches
+                            </a></li>
+                        /
+                        <li><a href="#" class="active">admin</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Insights -->
+            <ul class="insights">
+                <li><i class='bx bx-show-alt'></i>
+                    <span class="info">
+                        <h3>
+                           {{ numVisu }}
+                        </h3>
+                        <p>Numero de Visitantes no Site</p>
+                    </span>
+                </li>
+                <li><i class='bx bx-dollar-circle'></i>
+                    <span class="info">
+                        <h3>
+                           R${{ numpedido }}
+                        </h3>
+                        <p>Valor total de lanches Vendidos</p>
+                    </span>
+                </li>
+            </ul>
+            <!-- End of Insights -->
+
+
+            <div id="loginModal" class="modal_login">
+                <div class="modal-content_login">
+                <span id='closeLogin' class="close_login">&times;</span>
+                <header class="header-login">Login Form</header>
+                <div id ="error_login" style="display:none">user or password incorret</div>
+                <form  id ="loginForm" class="form_login_">
+                    <div class="field email">
+                    <div class="input-area">
+                        <input id ="username_login" type="text" name="username_login" placeholder="Email Address">
+                        <i class="icon fas fa-envelope"></i>
+                        <i class="error error-icon fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="error error-txt">Email can't be blank</div>
+                    </div>
+                    <div class="field password">
+                    <div class="input-area">
+                        <input id ="password_login" type="password" name="password_login" placeholder="Password">
+                        <i class="icon fas fa-lock"></i>
+                        <i class="error error-icon fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="error error-txt">Password can't be blank</div>
+                    </div>
+                    <div id="login_callout">
+                    <p>don't know why you're here? </p>
+                    <a href="#" style ="color: var(--primary)" id='touch'>get in touch</a>
+                </div>
+                    <button type="submit" class="button-56">Login</button>
+                </form>
+                </div>
+            </div>
+
+            <!-- <button id="cadastroLanche" onclick="openModal()">Cadastrar Lanche</button> -->
+
+            {% block scripts %}
+                <script>
+                    var message = "{{ message }}"; // Defina a variável 'message' como uma variável JavaScript
+                   
+                        // Verifica se a variável 'message' está definida e não é vazia
+                        if (message) {
+                            // Chame a função notifyProgram aqui
+                            notifyProgram('{{ message }}', 2);
+                        }
+                            
+                </script>
+            {% endblock %}
+
+            
+                <div class="modal" id="cadastroLancheModal">
+                    <div class="modal-content">
+                        <span id="close" onclick="closeModal()">&times;</span>
+                        <form id="cadastroLancheForm" action="{% url 'item' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <h2>Cadastrar Novo Lanche</h2>
+                            <div class="form-group">
+                                <label for="nomeLanche">Nome do Lanche:</label>
+                                <input type="text" id="nomeLanche" name="nomeLanche" placeholder="Informe o nome do lanche" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="preco">Preço:</label>
+                                <input type="text" id="preco" name="preco" placeholder="Informe o preço do lanche" required oninput="formatPrice(this)">
+                            </div>
+                            <div class="form-group">
+                                <label for="descricao">Descrição:</label>
+                                <textarea id="descricao" name="descricao" placeholder="Informe a descrição do lanche" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantidade">Quantidade Disponível:</label>
+                                <input type="number" id="quantidade" name="quantidade" placeholder="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="fotos">Fotos:</label>
+                                <input type="file" id="fotos" name="fotos" accept="image/*" multiple required onchange="previewImages(event)">
+                                <div class="image-container" id="imagePreview"></div>
+                            </div>
+                            <button type="submit">Cadastrar</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            
+
+                <div class="bottom-data">
+                    <div class="orders">
+                        <div class="header">
+                            <i class='bx bx-receipt'></i>
+                            <h3>Produtos</h3>
+                            <div class="icon-container" id='icons-grud' style='display:none;'>
+                                <i style='font-size: 20px' class='bx bx-edit' id="editIcon"></i>
+                                <i style='font-size: 20px' class='bx bx-trash' id="delicon"></i>
+                                <i style='font-size: 20px' class='bx bx-show' id="visuicon"></i>
+                            </div>
+                           
+                            <i id="cadastroLanche" onclick="openModal()"  class='bx bx-plus'></i>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th>id</th>
+                                    <th>name</th>
+                                    <th>pagamentos</th>
+                                    <th>Descrição</th>
+                                    <th>quantidade</th>
+                                    <th>pagina</th>
+                                </tr>
+                            </thead>                                            
+                            <tbody>
+                                {% for lanche in lanches.values %}
+                                <tr>
+                                    <td>
+                                        <input style="display: none;"  type="checkbox" class="cliente-checkbox" 
+                                            data-id="{{ lanche.id }}" 
+                                            data-nome="{{ lanche.nome }}" 
+                                            data-preco="{{ lanche.preco }}" 
+                                            data-descricao="{{ lanche.descricao }}" 
+                                            data-quantidade="{{ lanche.quantidade }}" 
+                                            data-fotos="{{ lanche.fotos }}">
+                                    </td>
+                                    <td>
+
+                                        <img src="{% static 'img/lanche1.png' %}">
+                                    </td>
+                                    <td>{{ lanche.id }}</td>
+                                    <td>{{ lanche.nome }}</td>
+                                    <td>{{ lanche.preco }}</td>
+                                    <td>{{ lanche.descricao }}</td>
+                                    <td>{{ lanche.quantidade }}</td>
+                                    <td>{{ lanche.fotos }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            
+                        </table>
+                    </div>
+                </div>            
+              
+
+    
+
+
+        </main>
+
+
+        <main id="mainuser" style="display: none;">,
+
+            <div class="header">
+                <div class="left">
+                    <h1>Dashboard</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="#">
+                                Krlanches
+                            </a></li>
+                        /
+                        <li><a href="#" class="active">Users</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bottom-data">
+                <div class="orders">
+                    <div class="header">
+                        <i class='bx bx-receipt'></i>
+                        <h3>Usuarios Cadastrados</h3>
+
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>id</th>
+                                <th>name</th>
+                                <th>razao social</th>
+                                <th>endereço</th>
+                                <th>cep</th>
+                                <th>telefone</th>
+                                <th>email</th>
+                                <th>Senha</th>
+                                <th>Pedidos</th>
+                            </tr>
+                        </thead>                                            
+                        <tbody>
+                            <script>
+
+                                alert("{{ users }}")
+                            </script>
+                            {% for user in users.values %}
+                            <tr>
+                                <td>
+                                    <input style="display: none;"  type="checkbox" class="cliente-checkbox" 
+                                        data-id="{{ lanche.id }}" 
+                                        data-nome="{{ lanche.nome }}" 
+                                        data-preco="{{ lanche.preco }}" 
+                                        data-descricao="{{ lanche.descricao }}" 
+                                        data-quantidade="{{ lanche.quantidade }}" 
+                                        data-fotos="{{ lanche.fotos }}">
+                                </td>
+                                <td>
+
+                                    <img src="../static/img/admin.jpg">
+                                </td>
+                            
+                                <td>{{user.id}}</td>
+                                <td>{{user.nome}}</td>
+                                <td>{{user.razaosocial}}</td>
+                                <td>{{user.endereco}}</td>
+                                <td>{{user.cep}}</td>
+                                <td>{{user.telefone}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.senha}}</td>
+                                <td style="text-align: center;">
+                                    <button class="abrir_modal" data-user-id="{{ user.id }}" id="PedidosUser{{ user.id }}">Ver Pedidos</button>
+
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        
+                    </table>
+                </div>
+            </div>  
+            
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                var botoes = document.querySelectorAll('.abrir_modal');
+                
+                botoes.forEach(function(botao) {
+                    botao.addEventListener('click', function() {
+                        var userId = parseInt(this.getAttribute('data-user-id')); // Convertendo para número inteiro
+                        var csrfToken = "{{ csrf_token }}";
+
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", "{% url 'extrairpedido' %}", true);
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.setRequestHeader('X-CSRFToken', csrfToken);
+
+                        xhr.onload = function() {
+                            if (xhr.status === 200) {
+                                var response = JSON.parse(xhr.responseText);
+                                if (response.status === 'success') {
+                                    // Processar e exibir os pedidos
+                                    var pedidos = response.pedidos;
+                                    
+                                    montarPedidos(pedidos);
+                                } else {
+                                    console.error(response.message);
+                                }
+                            } else {
+                                console.error(xhr.responseText);
+                            }
+                        };
+
+                        // Passando o userId diretamente como parte da string de dados
+                        var data = 'user_id=' + userId;
+                        xhr.send(data);
+                    });
+                });
+            });
+
+            </script>
+
+
+            <script>
+                // Função para montar os pedidos na tabela
+               // Função para montar os pedidos na tabela e habilitar o modal
+                // Função para montar os pedidos na tabela e habilitar o modal
+            function montarPedidos(pedidos) {
+                // Limpar pedidos anteriores
+                document.getElementById('modal-table-container').innerHTML = '';
+
+                // Iterar sobre os pedidos e adicionar uma tabela para cada modal de pedido
+                pedidos.forEach(function(pedido) {
+                    var modalId = pedido.id_compra;
+                    var modalTable = document.createElement('table');
+                    modalTable.classList.add('styled-table');
+                    modalTable.id = `table-${pedido.id_compra}`;
+                    console.log(pedidos)
+
+                    var tableHTML = `
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Data da Compra</th>
+                                <th>Valor Total</th>
+                                <th style="text-align: center;">Pedido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>${pedido.id_compra}</td>
+                                <td>${pedido.data}</td>
+                                <td>${pedido.valortotal}</td>
+                                <td style="text-align: center;">
+                                    <button class="DetailPedido" data-modal-id=${modalId}>Ver Pedido</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    `;
+                    modalTable.innerHTML = tableHTML;
+
+                    document.getElementById('modal-table-container').appendChild(modalTable);
+                    document.getElementById("modal_pedidos").style.display ="block";
+
+                    var abrirModalButton = modalTable.querySelector('.DetailPedido');
+                        abrirModalButton.addEventListener("click", function() {
+                            var dataId = abrirModalButton.getAttribute('data-modal-id');
+                            var dataIdInt = parseInt(dataId);
+                            
+                            // Limpa o conteúdo anterior
+                            document.getElementById('classDetailPedido-contener').innerHTML = '';
+
+                            // Itera sobre cada pedido
+                            pedidos.forEach(function(pedido) {
+                                // Verifica se o id_compra do pedido é igual ao dataIdInt
+                                if (pedido.id_compra === dataIdInt) {
+                                    // Cria uma tabela para mostrar os detalhes do pedido
+                                    var modalTabledetail = document.createElement('table');
+                                    modalTabledetail.classList.add('styled-table');
+                                    var tablePedido =`
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>ID</th>
+                                                <th>Nome do Item</th>
+                                                <th>Preço</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                    `;
+                                    // Itera sobre os itens dentro do array descricao de cada pedido
+                                    pedido.descricao.forEach(function(item) {
+                                        tablePedido += `
+                                            <tr>
+                                                <td><p><img src="../static/img/lanche1.png" class="imagem-item" alt=""></p></td>
+                                                <td>${item.id}</td>
+                                                <td>${item.nome}</td>
+                                                <td>${item.preco}</td>
+                                            </tr>
+                                        `;
+                                    });
+
+                                    tablePedido += `
+                                        </tbody>
+                                    `;
+
+                                    modalTabledetail.innerHTML = tablePedido;
+                                    document.getElementById("classDetailPedido-contener").appendChild(modalTabledetail);
+                                    document.getElementById("PedidosDetailPedidosModal").style.display = "block";
+                                    
+                                }
+                            });
+
+
+                        
+                    
+                        // document.getElementById(modalId).style.display = "block";
+
+                        // // Obtém o ID do pedido do atributo data-modal-id
+                        // var pedidoId = modalId.split('-')[1];
+
+                        // // Recupera os itens do pedido correspondente
+                        // var itensPedido = pedidos.find(function(pedido) {
+                        //     return pedido.id_compra == pedidoId;
+                        // }).descricao;
+
+                        // // Monta a lista de itens do pedido dentro do modal
+                        // montarItensPedido(modalId, itensPedido);
+                    });
+                });
+            }
+
+
+                // Adiciona event listener para botões "Fechar"
+                document.addEventListener("DOMContentLoaded", function() {
+                var fecharModalButtons = document.querySelectorAll('.fechar_modal');
+                fecharModalButtons.forEach(function(button) {
+                    button.addEventListener("click", function() {
+                        document.getElementById("modal_pedidos").style.display ="none";
+                    });
+                });
+            });
+            document.addEventListener("DOMContentLoaded", function() {
+                var fecharModalButtons = document.querySelectorAll('.fechar_modal_detail');
+                fecharModalButtons.forEach(function(button) {
+                    button.addEventListener("click", function() {
+                        document.getElementById("PedidosDetailPedidosModal").style.display ="none";
+                    });
+                });
+            });
+
+
+            </script>
+
+
+            <script>
+
+                    document.addEventListener("DOMContentLoaded", function() {
+                        // Seleciona o formulário de pesquisa e o campo de entrada
+                        const form = document.querySelector('.form_search');
+                        const input = document.querySelector('.input_search');
+
+                        // Adiciona um ouvinte de eventos ao formulário de pesquisa
+                        form.addEventListener('submit', function(event) {
+                            event.preventDefault(); // Evita o envio do formulário
+
+                            const searchTerm = input.value.trim(); // Obtém o valor de pesquisa
+
+                            // Seleciona todas as tabelas de pedidos
+                            const tables = document.querySelectorAll('.styled-table');
+
+                            // Itera sobre as tabelas e oculta aquelas que não correspondem ao ID de pesquisa
+                            tables.forEach(function(table) {
+                                const tableId = table.id.replace('table-', ''); // Remove o prefixo 'table-'
+
+                                if (tableId !== searchTerm) {
+                                    table.style.display = 'none'; // Oculta a tabela
+                                } else {
+                                    table.style.display = ''; // Mostra a tabela
+                                }
+                            });
+                        });
+
+                        // Adiciona um ouvinte de eventos para atualizar em tempo real enquanto digita
+                        input.addEventListener('input', function() {
+                            const searchTerm = input.value.trim(); // Obtém o valor de pesquisa
+
+                            // Seleciona todas as tabelas de pedidos
+                            const tables = document.querySelectorAll('.styled-table');
+
+                            // Itera sobre as tabelas e mostra/oculta com base no ID de pesquisa
+                            tables.forEach(function(table) {
+                                const tableId = table.id.replace('table-', ''); // Remove o prefixo 'table-'
+
+                                if (tableId.includes(searchTerm)) {
+                                    table.style.display = ''; // Mostra a tabela
+                                } else {
+                                    table.style.display = 'none'; // Oculta a tabela
+                                    // document.getElementById("no-results1").style.display ="block";
+                                    notifyProgram("Nenhum Pedido encontrado", 2)
+                                }
+                            });
+                        });
+                    });
+
+            </script>
+
+
+
+
+            <div class="tab-modal_pedidos" id ="modal_pedidos">
+                <form action="" class="form_search">
+                    <input class="input_search" type="search" placeholder="Pesquise por ID" required>
+                    <button class="search_button" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <!-- <div id="no-results1" style="display: none;">Nenhum resultado encontrado.</div> -->
+                </form>
+                <div class="tab-container_teste">
+                    <span class="fechar_modal">&times;</span>
+                    <div class="tab-modal_pedidos-content"  id="modal-table-container" >
+                        <div id="no-results2" style="display: none;">Nenhum resultado encontrado.</div>
+                    </div>
+                </div>
+                
+           
+            </div>
+            
+
+            <div id="PedidosDetailPedidosModal">
+                <div class="tab-container_teste" style="border: none; background-color:transparent;">
+                    <span class="fechar_modal_detail">&times;</span>
+                    <div id="classDetailPedido-contener">
+                    </div>
+                </div>
+
+            </div>
+
+            
+                
+
+
+
+
+        </main>
+
+
+        <main id="maintransacao" style="display: none;">,
+            <div class="bottom-data">
+                <div class="orders">
+                    <div class="header">
+                        <i class='bx bx-receipt'></i>
+                        <h3>Histórico de Compras</h3>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Collection ID</th>
+                                <th>Collection Status</th>
+                                <th>Payment ID</th>
+                                <th>Status</th>
+                                <th>External Reference</th>
+                                <th>Payment Type</th>
+                                <th>Merchant Order ID</th>
+                                <th>Preference ID</th>
+                                <th>Site ID</th>
+                                <th>Processing Mode</th>
+                                <th>Merchant Account ID</th>
+                                <th>Created At</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for transaction in transacao %}
+                            <tr>
+                                <td>{{ transaction.collection_id }}</td>
+                                <td>{{ transaction.collection_status }}</td>
+                                <td>{{ transaction.payment_id }}</td>
+                                <td>{{ transaction.status }}</td>
+                                <td>{{ transaction.external_reference }}</td>
+                                <td>{{ transaction.payment_type }}</td>
+                                <td>{{ transaction.merchant_order_id }}</td>
+                                <td>{{ transaction.preference_id }}</td>
+                                <td>{{ transaction.site_id }}</td>
+                                <td>{{ transaction.processing_mode }}</td>
+                                <td>{{ transaction.merchant_account_id }}</td>
+                                <td>{{ transaction.created_at }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        
+        </main>
+
+
+        
+
+
+
+   
+
+    </div>
+    <script src="{% static 'js/rowpage.js' %}"></script>
+    <script src="{% static 'js/admin.js' %}"></script>
+    <script src="{% static 'js/adminModal.js' %}"></script> 
+    
+   
+
+
+</body>
+
+</html>
